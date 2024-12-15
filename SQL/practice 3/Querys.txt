@@ -1,0 +1,55 @@
+select OrderID, OrderDate from Order where EmployeeID=5
+
+select SupplierID, ContactName, ContactTitle from Suppliers
+where ContactTitle!="Marketing Manager"
+
+
+select ProductID ,ProductName where ProductName LIKE "%queso%"
+
+
+select OrderID, CustomerID, ShipCountry
+where ShipCountry BETWEEN "France" AND "Belgium"
+
+
+select OrderID, CustomerID, ShipCountry from Order
+where ShipCountry in ('Brazil','Mexico','Argentina','Venezuela')
+
+
+select FirstName, LastName, Title, BirthDate from Employees
+ORDER BY BirthDay ASC
+
+
+select FirstName, LastName, Title, DATE(BirthDate) from Employees
+ORDER BY BirthDay ASC
+
+
+select CONCAT(FirstName," ",LastName) as FullName from Employees
+
+
+select OrderID, ProductID, UnitPrice, Quantity, (UnitPrice*Quantity) as TotalPrice
+from OrderDetails ORDER BY OrderID, ProductID
+
+
+select count(*) from Customers
+
+
+select min(OrderDate) as FirstOrder from Orders;
+
+
+select country from customers group by country
+
+
+select distanct(ContactTitles), count(CountactTitles) as TotalContactTitle
+from customers
+order by ContactTitles
+
+
+select p.ProductID, p.ProductName, s.CompanyName as Supplier
+from Products p,suppliers s
+where p.SupplierID=s.SupplierID
+ORDER BY p.ProductID
+
+
+select o.OrderID, DATE(o.OrderDate), s.CompanyName from order o, shipper s
+where s.shipperID=o.ShipVia and o.OrderID<10300
+ORDER BY OrderID
